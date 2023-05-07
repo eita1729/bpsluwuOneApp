@@ -262,10 +262,10 @@
 	<script type="text/javascript">
         var tabledata = [];
    	</script>
-	<script type="text/javascript>">
-
-	</script>
-    <script type="text/javascript">
+	<script type="text/javascript">
+		var viewIconCall = function(row){};
+		var editIconCall = function(row){};
+		var deleteIconCall = function(row){};
 		let showIcon = function(cell, formatterParams,onRendered){
 			return "<button class='ui blue small icon button'><i class='ui small eye icon'></i></button>";
 		}
@@ -277,16 +277,18 @@
 		}
 		//view,edit,delete column//
 		let viewColumn = {formatter:showIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
-			alert("View Button Clicked");
+			viewIconCall(cell.getRow());
 		}};
 		let editColumn = {formatter:editIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
-			alert("Edit Button Clicked");
+			editIconCall(cell.getRow());
 		}};
 		let deleteColumn = {formatter:deleteIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
-			alert("Delete Button Clicked");
+			deleteIconCall(cell.getRow());
 		}};
+	</script>
+    <script type="text/javascript">
     	var jumlah_hari = 30;
-    	var columnData = [{title:"Nama Pengunjung",field:"nama"},{title:"Tanggal",field:"date"},{title:"Tujuan",field:"tujuan_ket"},viewColumn,editColumn,deleteColumn];
+    	var columnData = [{title:"Nama Pengunjung",field:"nama"},{title:"Tanggal",field:"date"},{title:"Tujuan",field:"tujuan_ket"},viewColumn];
         var table = new Tabulator("#example-table", {
              // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
             data:[], //assign data to table
@@ -379,10 +381,14 @@
                 $("#data_popup").hide();
             }
         }
-        table.on("rowClick",function(e,row){
-            loadBukuTamuItem(row);           
+		viewIconCall = function(row){
+			loadBukuTamuItem(row);
 			$("#bukutamu_popup").modal({"closable":false}).modal("show");
-        });
+		};
+        //table.on("rowClick",function(e,row){
+        //    loadBukuTamuItem(row);           
+		//	$("#bukutamu_popup").modal({"closable":false}).modal("show");
+        //});
 		$("#bukutamu_close_popup").click(function(){
 			$("#bukutamu_popup").modal({"closable":false}).modal("hide");
 		});

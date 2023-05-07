@@ -286,9 +286,10 @@
 	<script type="text/javascript">
         var tabledata = [];
    	</script>
+	<%@ include file="jsp_include/ViewEditDeleteColumn/view_edit_delete.html" %>
     <script type="text/javascript">
     	var jumlah_hari = 30;
-    	var columnData = [{title:"Nama Pengunjung",field:"nama",frozen:true},{title:"Tanggal",field:"date"},{title:"Tujuan",field:"tujuan_ket"}];
+    	var columnData = [{title:"Nama Pengunjung",field:"nama",frozen:true},{title:"Tanggal",field:"date"},{title:"Tujuan",field:"tujuan_ket"},viewColumn];
         var table = new Tabulator("#example-table", {
              // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
             data:[], //assign data to table
@@ -381,10 +382,10 @@
                 $("#data_popup").hide();
             }
         }
-        table.on("rowClick",function(e,row){
-            loadBukuTamuItem(row);           
+		viewIconCall = function(row){
+			loadBukuTamuItem(row);
 			$("#bukutamu_popup").modal({"closable":false}).modal("show");
-        });
+		};
 		$("#bukutamu_close_popup").click(function(){
 			$("#bukutamu_popup").modal({"closable":false}).modal("hide");
 		});
