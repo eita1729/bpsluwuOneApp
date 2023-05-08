@@ -285,8 +285,9 @@
 	</script>
 	<script type="text/javascript">
         var tabledata = [];
+        <%@ include file="jsp_include/ViewEditDeleteColumn/view_edit_delete.js" %>
    	</script>
-	<%@ include file="jsp_include/ViewEditDeleteColumn/view_edit_delete.html" %>
+	
     <script type="text/javascript">
     	var jumlah_hari = 30;
     	var columnData = [{title:"Nama Pengunjung",field:"nama",frozen:true},{title:"Tanggal",field:"date"},{title:"Tujuan",field:"tujuan_ket"},viewColumn];

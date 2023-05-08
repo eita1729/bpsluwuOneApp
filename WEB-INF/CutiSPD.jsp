@@ -4,12 +4,12 @@
 	<head>
 		<title>BPS Kab. Luwu</title>
 		<link rel="icon" href="LogoBPSLuwu.png"/>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 		<script
 		  src="https://code.jquery.com/jquery-3.1.1.min.js"
 		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		  crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script> 
 	    <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
 	    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>    
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -127,7 +127,7 @@
 				  <b>SPD & Cuti</b>
 				</h1>
 				<div class="ui divider"></div>
-				<form class="ui form">
+				<div class="ui form">
 					<div class="field">
 						<label><b>Nama Pegawai</b></label>
 						<select name="nama_pegawai" id="nama_pegawai_select" class="ui dropdown selection">
@@ -182,10 +182,6 @@
 					<div class="ui container right aligned">
 						<div class="row">
 							<div class="right column">
-								<a class="ui red small left labeled icon button" id="delete_button_id">
-								  <i class="trash icon"></i>
-								  Delete
-								</a>
 								<a class="ui green small left labeled icon button" id="refresh_button_id">
 								  <i class="sync icon"></i>
 								  Refresh
@@ -193,7 +189,7 @@
 							</div>	
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 		<!-- html for login -->
@@ -225,6 +221,7 @@
 			</div>
 		</div>
 		<!-- html for login -->
+		<%@ include file="jsp_include/ViewEditDeleteColumn/delete_popup.html" %>
 	</body>
 	<script type="text/javascript">
 		/** 
@@ -266,19 +263,19 @@
 	</script>
 	<script type="text/javascript">
         var tabledata = [];
+		<%@ include file="jsp_include/ViewEditDeleteColumn/view_edit_delete.js" %>
    	</script>
     <script type="text/javascript">
           var table = new Tabulator("#example-table", {
              // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
             data:[], //assign data to table
             layout:"fitColumns", //fit columns to width of table (optional)
-            selectable:true,
             columns:[ //Define Table Columns
                 {title:"Nama", field:"pegawai_nama", width:150,frozen:true},
                 {title:"Tanggal", field:"tanggal", hozAlign:"left"},
                 {title:"Bulan", field:"bulan", hozAlign:"left"},
                 {title:"Tahun", field:"tahun", hozAlign:"left"},
-                {title:"Status", field:"spd_cuti_status_ket", hozAlign:"left"},
+                {title:"Status", field:"spd_cuti_status_ket", hozAlign:"left"},deleteColumn
             ],
             initialSort:[{column:"tahun",dir:"asc"},{column:"bulan",dir:"asc"},{column:"tanggal",dir:"asc"}]
 
@@ -347,9 +344,23 @@
 				}
 			},500);
 		});
-
+		//deleteIconCall Setting
+		deleteIconCall = function(row){		
+			console.log("called");
+			$("#process_delete_button").addClass("disabled");			
+			$($("#process_delete_button").find("i")[0]).removeClass("trash alternate");
+			$($("#process_delete_button").find("i")[0]).addClass("loading spinner");
+			try{
+				let selectedDataArray = [];
+				selectedDataArray.push(row.getData().id);
+				console.log(JSON.stringify(selectedDataArray));
+				deleteData(selectedDataArray);
+			} catch(ee){
+				console.log(ee.message);
+			}			
+		};
 		//delete_button
-  		$("#delete_button_id").click(function(){
+ /* 		$("#delete_button_id").click(function(){
 			$(this).addClass("disabled");			
 			$($(this).find("i")[0]).removeClass("trash");
 			$($(this).find("i")[0]).addClass("loading spinner");		
@@ -367,18 +378,19 @@
 				console.log(ee.message);
 			}
 		});
+*/
 		//delete_data
 		function deleteData(input){
 			$.ajax({url:"/api/list_spd_cuti/delete",method:"post",data:JSON.stringify(input),contentType:"application/json",success:function(){
-				alert("success");
+				$("#delete_popup").modal("hide");
 				$("#refresh_button_id").click();
 			},error:function(){
 				alert("Terjadi Kesalahan. Pastikan Internet Anda Stabil.");
 			}}).always(function(){
 			setTimeout(function(){			
-				$("#delete_button_id").removeClass("disabled");			
-				$($("#delete_button_id").find("i")[0]).removeClass("loading spinner");
-				$($("#delete_button_id").find("i")[0]).addClass("trash");
+				$("#process_delete_button").removeClass("disabled");			
+				$($("#process_delete_button").find("i")[0]).removeClass("loading spinner");
+				$($("#process_delete_button").find("i")[0]).addClass("trash alternate");
 			},500);
 			});
 		}
