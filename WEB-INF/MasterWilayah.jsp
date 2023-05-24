@@ -11,8 +11,8 @@
 		  crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script> 
 	    <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
-	    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>   
-		<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script> 
+	    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script> 	
+		<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>    
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 			.main.container{
@@ -95,6 +95,7 @@
 				</div>
 			</div>	
 		</div>
+		<div class="ui divider"></div>
 		<div class="ui main container">
 			<div class="ui inverted brown segment">
 			<div class="ui vertically divided centered grid">
@@ -106,23 +107,10 @@
 					</div>
 				-->
 					<div class="content">
-						<h2>Si Orens</h2>
+						<h2>Tools</h2>
 						<div class="ui icon labeled mini compact menu">
-							<a href="/CutiSPD" class="item"><i class="calendar times icon"></i>Cuti & SPD</a>
-							<a href="/KartuKendali" class="item"><i class="motorcycle icon"></i>KartuKendali</a>
-							<a href="http://bpsluwugoid.odoo.com" class="item"><i class="envelope icon"></i>Surat</a>
+							<a class="item"><i class="map outline blue icon"></i>Wilayah</a>
 						</div>
-						<div class="ui icon labeled mini compact menu">
-							<a class="item"><i class="blue tasks icon"></i>Matriks</a>
-							<a href="/Presensi" class="item"><i class="clipboard outline icon"></i>Presensi</a>
-							<a href="/Notulen" class="item"><i class="file alternate k icon"></i>Notulen</a>
-						</div>	
-						<div class="ui icon labeled mini compact menu">
-							<a href="/BukuTamu" class="item"><i class="address book outline icon"></i>BukuTamu</a>
-							<a href="http://webapps.bps.go.id/kipapp" class="item"><i class="kickstarter k icon"></i>KipApp</a>
-							<a href="http://sipecut.bps.go.id" class="item"><i class="stripe s icon"></i>Sipecut</a>
-						</div>	
-
 					</div>
 				</div>
 			</div>
@@ -133,39 +121,74 @@
 		<div class="ui container">
 			<div class="ui brown segment">
 				<h1 class="ui center aligned icon header">
-				  <i class="blue tasks icon"></i>
-				  <b>Matriks Kegiatan</b>
+				  <i class="map outline blue icon"></i>
+				  <b>Master Wilayah</b>
 				</h1>
 				<div class="ui divider"></div>
 					<div class="ui form">
-						<div class="field">
-							<label><b>Pilih Bulan</b></label>
-							<div class="ui three column stackable grid">
-								<div class="row">
-									<div class="column">
-										<input type="month" id="input_bulan" value="2023-03">
+						<div class="three fields">
+							<div class="field">
+								<div class="ui labeled input">
+									<div class="ui label blue">
+									  Kabupaten
 									</div>
-								</div>
+									<select name="kode_kab" id="master_kab_select" class="ui dropdown selection">
+									</select>
+								  </div>
 							</div>
+							<div class="field">
+								<div class="ui labeled input">
+									<div class="ui label blue">
+									  Kecamatan
+									</div>
+									<select name="kode_kec" id="master_kec_select" class="ui dropdown selection">
+									</select>
+								  </div>
+							</div>
+							<div class="field">
+								<div class="ui labeled input">
+									<div class="ui label blue">
+									  Kelurahan/Desa
+									</div>
+									<select name="kode_dk" id="master_dk_select" class="ui dropdown selection">
+									</select>
+								  </div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="ui container center aligned">
+						<div class="row">
+							<div class="column">
+								<a class="ui green left labeled icon button" id="refresh_button_id">
+								  <i class="sync icon"></i>
+								  Load
+								</a>
+							</div>	
 						</div>
 					</div>
 					<br>
 					<div id="example-table"></div>
-					<br>
-					<div class="ui container right aligned">
-						<div class="row">
-							<div class="right column">
-								<%@ include file="jsp_include/DownloadTable/html_download.jsp" %>
-								<a class="ui green small left labeled icon button" id="refresh_button_id">
-								  <i class="sync icon"></i>
-								  Refresh
-								</a>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
+		<!-- html for select master wilayah popup  -->
+		<div class="ui container">
+			<div class="ui tiny modal" id="select_master_popup">
+				<i class="close icon"></i>
+				<div class="header">Error</div>
+				<div class="content">
+					<div class="ui warning message" id="warning_select_master">
+						<div class="header">
+							Warning
+						</div>
+						<span id="message_warning_select"></span>
+						</div>	
+					</div>				
+				</div>
+			</div>
+		</div>
+		<!-- html for select master wilayah popup -->
 		<!-- html for login -->
 		<div class="ui container">
 			<div class="ui tiny modal" id="login_popup">
@@ -182,12 +205,12 @@
 							<input type="password" id="password_input">
 						</div>
 					</div>
-				<div class="ui hidden warning message" id="warning_process_login">
-				  <div class="header">
-				   	Error!
-				  </div>
-				  <span id="message_process_login"></span>
-				</div>					
+					<div class="ui hidden warning message" id="warning_process_login">
+						<div class="header">
+							Error!
+						</div>
+						<span id="message_process_login"></span>
+					</div>					
 				</div>
 				<div class="actions">
 					<a class="ui blue labeled icon button" id="proceess_login_button"><i class="sign in icon"></i>Login</a>
@@ -206,7 +229,97 @@
 		$("#toggle_menu").click(function(){
 			$("#sidebar_menu").sidebar("toggle");
 		});
+        $("#akun_dropdown").dropdown();
+		$("#master_kab_select").dropdown();
+		$("#master_kec_select").dropdown();
+		$("#master_dk_select").dropdown();
 		//=========================================================//
+	</script>
+	<script type="text/javascript">
+		//load selectable master (dropdown master)
+		let kab_val = "";
+		let kec_val = "";
+		let dk_val = "";
+		$("#master_kab_select").append($("<option>",{value:"17",text:"LUWU"}));
+		$("#master_kab_select").val("17");
+		function getKecMaster(){		
+			kab_val = $("#master_kab_select").val();
+			$.get("/api/wilayah/kec/kab/"+kab_val,function(data,status){
+				let master_kec = JSON.parse(data);
+				$("#master_kec_select").html("");
+				$("#master_kec_select").append($("<option>",{value:"-1",text:"Semua"}));
+				$.each(master_kec,function(i,item){
+					let text_select = "["+item.kode+"]"+" - "+item.nama;
+					$("#master_kec_select").append($("<option>",{value:item.kode,text:text_select}));
+				});
+			}).done(function(){
+			}).fail(function(){
+			});
+		}
+		function getDKMaster(){		
+			kab_val = $("#master_kab_select").val();
+			kec_val = $("#master_kec_select").val();
+			$.get("/api/wilayah/dk/kab/"+kab_val+"/kec/"+kec_val,function(data,status){
+				let master_dk = JSON.parse(data);
+				$("#master_dk_select").html("");
+				$("#master_dk_select").append($("<option>",{value:"-1",text:"Semua"}));
+				$.each(master_dk,function(i,item){
+					let text_select = "["+item.kode+"]"+" - "+item.nama;
+					$("#master_dk_select").append($("<option>",{value:item.kode,text:text_select}));
+				});
+			}).done(function(){
+			}).fail(function(){
+			});
+		}
+		getKecMaster();
+		$("#master_kec_select").on("change",function(){
+			getDKMaster();
+		});
+		function getSLSMasterByKabKecDK(kode_kab,kode_kec,kode_dk){	
+			if((kode_kec != null) && (kode_kec === "-1")){
+				$.get("/api/wilayah/sls/kab/"+kab_val,function(data,status){
+				let master_sls = JSON.parse(data);
+				loadData(master_sls);
+				}).done(function(){
+					$("#refresh_button_id").removeClass("disabled");			
+					$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
+					$($("#refresh_button_id").find("i")[0]).addClass("sync");
+				}).fail(function(){
+					$("#refresh_button_id").removeClass("disabled");			
+					$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
+					$($("#refresh_button_id").find("i")[0]).addClass("sync");				
+					alert("gagal");
+				});		
+			} else if((kode_dk != null) && (kode_dk === "-1")){
+				$.get("/api/wilayah/sls/kab/"+kab_val+"/kec/"+kode_kec,function(data,status){
+				let master_sls = JSON.parse(data);
+				loadData(master_sls);
+				}).done(function(){
+					$("#refresh_button_id").removeClass("disabled");			
+					$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
+					$($("#refresh_button_id").find("i")[0]).addClass("sync");
+				}).fail(function(){
+					$("#refresh_button_id").removeClass("disabled");			
+					$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
+					$($("#refresh_button_id").find("i")[0]).addClass("sync");				
+					alert("gagal");
+				});						
+			} else{
+				$.get("/api/wilayah/sls/kab/"+kab_val+"/kec/"+kode_kec+"/dk/"+kode_dk,function(data,status){
+				let master_sls = JSON.parse(data);
+				loadData(master_sls);
+				}).done(function(){
+					$("#refresh_button_id").removeClass("disabled");			
+					$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
+					$($("#refresh_button_id").find("i")[0]).addClass("sync");
+				}).fail(function(){
+					$("#refresh_button_id").removeClass("disabled");			
+					$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
+					$($("#refresh_button_id").find("i")[0]).addClass("sync");				
+					alert("gagal");
+				});						
+			}
+		}
 	</script>
 	<script type="text/javascript">
         var tabledata = [];
@@ -214,19 +327,20 @@
     <script type="text/javascript">
     	var jumlah_hari = 30;
     	var columnData = [];
-    	columnData.push({title:"Nama",width:150});
-   		for(let i = 0;i < jumlah_hari;i++){
-    		columnData.push({title:(""+(i+1)),width:60});
-   		}
+    	columnData.push({title:"Nama SLS",field:"nama",width:230,frozen:true});
+		columnData.push({title:"ID SLS",field:"idsls"});
+		columnData.push({title:"Kode Kab",field:"kode_kab"});
+		columnData.push({title:"Kode Kec",field:"kode_kec"});
+		columnData.push({title:"Kode Desa/Kelurahan",field:"kode_dk"});
         var table = new Tabulator("#example-table", {
              // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
             data:[], //assign data to table
             layout:"fitColumns", //fit columns to width of table (optional)
             selectable:true,
             columns:columnData,
-            maxHeight:500
+			pagination:true, //enable.
+    		paginationSize:10, // this option can take any positive integer value
         });
-
         function loadData(table_data){
 			table.replaceData(table_data)
 			.then(function(){
@@ -239,42 +353,10 @@
 //================= BUTTON =========================
 		//refresh_data
 		function refreshData(){
-			let bulan_tahun = $("#input_bulan").val();
-			let bulan = -1;
-			let tahun = -1;
-			try{
-				let arrayBT = bulan_tahun.split("-");
-				tahun = parseInt(arrayBT[0]);
-				bulan = parseInt(arrayBT[1]);
-				console.log("Bulan : "+bulan+" --- Tahun : "+tahun);
-			} catch(ee){
-				console.log(ee.message);
-				alert("Pastikan Bulan dan Tahun sudah pilih.");
-				return;
-			}
-			let bulanDate = new Date(tahun,bulan,0);
-			console.log(bulanDate.getDate());
-			jumlah_hari = bulanDate.getDate();
-			$.get("/api/list_spd_cuti/all/year/"+tahun+"/month/"+bulan,function(data,status){
-				columnData = [];
-				let response_data = JSON.parse(data);
-				let data2 = response_data.data;
-				columnData.push({title:"Nama",field:"nama",width:150,frozen:true});
-		   		for(let i = 0;i < jumlah_hari;i++){
-		    		columnData.push({title:(""+(i+1)),field:("tanggal.tanggal_"+(i+1)),width:60});
-		   		}
-		   		table.setColumns(columnData);
-				loadData(data2);
-			}).done(function(){
-				$("#refresh_button_id").removeClass("disabled");			
-				$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
-				$($("#refresh_button_id").find("i")[0]).addClass("sync");
-			}).fail(function(){
-				$("#refresh_button_id").removeClass("disabled");			
-				$($("#refresh_button_id").find("i")[0]).removeClass("loading spinner");
-				$($("#refresh_button_id").find("i")[0]).addClass("sync");				
-				alert("gagal");
-			});
+			let kab_s_val = $("#master_kab_select").val();
+			let kec_s_val = $("#master_kec_select").val();
+			let dk_s_val = $("#master_dk_select").val();
+			getSLSMasterByKabKecDK(kab_s_val,kec_s_val,dk_s_val);
 		}
 
         //refresh_button
@@ -290,10 +372,6 @@
 					console.log(ee.message);
 				}
 			},500);
-		});
-		$("#refresh_button_id").click();
-		$("#input_bulan").on("change",function(){			
-			$("#refresh_button_id").click();
 		});
     </script>
     <script>
@@ -345,7 +423,4 @@
 			$("#warning_process_login").addClass("visible");
 		}
     </script>
-	<script type="text/javascript">
-		<%@ include file="jsp_include/DownloadTable/js_download.js" %>
-	</script>
 </html>

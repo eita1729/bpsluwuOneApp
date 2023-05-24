@@ -86,6 +86,14 @@
 				</div>
 			</div>
 			<a class="item" href="#"><b>About</b></a>
+			<div class="item">
+				<div class="header">
+					<b>Tools</b>
+				</div>
+				<div class="menu">
+					<a class="item" href="/MasterWilayah"><i class="map outline blue icon"></i>Master Wilayah</a>
+				</div>
+			</div>
 		</div>
 		<div class="ui main container">
 			<div class="ui inverted brown segment">

@@ -9,9 +9,10 @@
 		  src="https://code.jquery.com/jquery-3.1.1.min.js"
 		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		  crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script> 
-		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+	    <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
+	    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>   
+		<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>     
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 			.main.container{
@@ -108,13 +109,13 @@
 						<h2>Si Orens</h2>
 						<div class="ui icon labeled mini compact menu">
 							<a href="/CutiSPD" class="item"><i class="calendar times icon"></i>Cuti & SPD</a>
-							<a href="/KartuKendali" class="item"><i class="motorcycle icon"></i>KartuKendali</a>
+							<a class="item"><i class="motorcycle icon"></i>KartuKendali</a>
 							<a href="http://bpsluwugoid.odoo.com" class="item"><i class="envelope icon"></i>Surat</a>
 						</div>
 						<div class="ui icon labeled mini compact menu">
 							<a href="/Matriks" class="item"><i class="tasks icon"></i>Matriks</a>
 							<a href="/Presensi" class="item"><i class="clipboard outline icon"></i>Presensi</a>
-							<a class="item"><i class="blue file alternate k icon"></i>Notulen</a>
+							<a href="/Notulen" class="item"><i class="blue file alternate k icon"></i>Notulen</a>
 						</div>	
 						<div class="ui icon labeled mini compact menu">
 							<a href="/BukuTamu" class="item"><i class="address book outline icon"></i>BukuTamu</a>
@@ -131,8 +132,8 @@
 		<div class="ui container">
 			<div class="ui brown segment">
 				<h1 class="ui center aligned icon header">
-				  <i class="blue file alternate k icon"></i>
-				  <b>Notulen</b>
+				  <i class="blue motorcycle icon icon"></i>
+				  <b>KartuKendali</b>
 				</h1>
 				<div class="ui divider"></div>
 				<div class="ui top attached tabular menu">
@@ -145,17 +146,27 @@
 				  </div>
 				  <div class="ui bottom attached segment">
 					<div id="daftar_segment">
-						<div class="ui three column stackable grid" id="daftar_rapat_container">
-<!--						<div class="column">
-								<div class="ui segment">
-									<a class="ui red ribbon label">Rapat Bulanan</a>
-									<p><a href="javascript:void(null);" class="rapat_item" id="rapat_0"><b>Account Details csdf dsfds dsfs df dsf hghgh
-										fghfgh dan apakah</b>
-									</a></p>
+					<div id="daftar_segment">
+                        <div class="ui container">
+							<div class="ui form">
+								<div class="field">
+									<label><b>Pilih Pegawai</b></label>
+									<div class="ui three column stackable grid">
+										<div class="row">
+											<div class="column">
+												<select name="pegawai" id="pegawai_daftar_select" class="ui dropdown selection">
+													<option default value="-1">Semua</option>
+												</select>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
--->
-						</div>
+                            <br>
+                            <div>
+                                Ini Adalah Kolom Data
+                            </div>
+                        </div>
 						<br>
 						<div class="ui container right aligned">
 							<div class="row">

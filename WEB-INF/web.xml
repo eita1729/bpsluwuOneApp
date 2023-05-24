@@ -62,6 +62,15 @@
 		<url-pattern>/BukuTamu</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>MasterWilayah</servlet-name>
+		<servlet-class>com.bpsluwuOneApp.servlet.MasterWilayah</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MasterWilayah</servlet-name>
+		<url-pattern>/MasterWilayah</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>StatusLoginFilter</filter-name>
 		<filter-class>com.bpsluwuOneApp.filter.StatusLoginFilter</filter-class>
@@ -84,5 +93,6 @@
 		<url-pattern>/Matriks</url-pattern>
 		<url-pattern>/Notulen</url-pattern>
 		<url-pattern>/BukuTamu</url-pattern>
+		<url-pattern>/MasterWilayah</url-pattern>
 	</filter-mapping>
 </web-app>
