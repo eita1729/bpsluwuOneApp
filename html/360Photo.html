@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+    <head>
+    </head>
+    <body>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/105/three.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js"></script>
+        <script>
+            const panorama = new PANOLENS.ImagePanorama( 'WalTim360.JPG' );
+            const viewer = new PANOLENS.Viewer();
+            viewer.add(panorama);
+        </script>
+    </body>
+</html>
