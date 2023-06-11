@@ -1,6 +1,5 @@
 <%@ page import="com.bpsluwuOneApp.dto.*,java.util.*" session="false" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
 	<head>
 		<title>BPS Kab. Luwu</title>
 		<link rel="icon" href="LogoBPSLuwu.png"/>
@@ -10,9 +9,8 @@
 		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		  crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-	    <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
-	    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>   
-		<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>     
+		<link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
+	    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 			.main.container{
@@ -80,20 +78,11 @@
 					<a class="item" href="/Matriks">Matriks</a>
 					<a class="item" href="/Presensi"><b>Presensi</b></a>
 					<a class="item" href="/Notulen"><b>Notulen</b></a>
-					<a class="item" href="/BukuTamu"><b>BukuTamu</b></a>
 					<a class="item" href="http://webapps.bps.go.id/kipapp"><b>KipApp</b></a>
 					<a class="item" href="http://sipecut.bps.go.id"><b>Sipecut</b></a>
 				</div>
 			</div>
 			<a class="item" href="#"><b>About</b></a>
-			<div class="item">
-				<div class="header">
-					<b>Tools</b>
-				</div>
-				<div class="menu">
-					<a class="item" href="/MasterWilayah"><i class="map outline blue icon"></i>Master Wilayah</a>
-				</div>
-			</div>	
 		</div>
 		<div class="ui main container">
 			<div class="ui inverted brown segment">
@@ -105,24 +94,24 @@
 						<div class="ui right labeled icon button"><i class="right arrow icon"></i>Home</div>
 					</div>
 				-->
-					<div class="content">
-						<h2>Si Orens</h2>
-						<div class="ui icon labeled mini compact menu">
-							<a href="/CutiSPD" class="item"><i class="calendar times icon"></i>Cuti & SPD</a>
-							<a class="item"><i class="motorcycle icon"></i>KartuKendali</a>
-							<a href="http://bpsluwugoid.odoo.com" class="item"><i class="envelope icon"></i>Surat</a>
-						</div>
-						<div class="ui icon labeled mini compact menu">
-							<a href="/Matriks" class="item"><i class="tasks icon"></i>Matriks</a>
-							<a href="/Presensi" class="item"><i class="clipboard outline icon"></i>Presensi</a>
-							<a href="/Notulen" class="item"><i class="blue file alternate k icon"></i>Notulen</a>
-						</div>	
-						<div class="ui icon labeled mini compact menu">
-							<a href="/BukuTamu" class="item"><i class="address book outline icon"></i>BukuTamu</a>
-							<a href="http://webapps.bps.go.id/kipapp" class="item"><i class="kickstarter k icon"></i>KipApp</a>
-							<a href="http://sipecut.bps.go.id" class="item"><i class="stripe s icon"></i>Sipecut</a>
-						</div>	
-					</div>
+                    <div class="content">
+                        <h2>Si Orens</h2>
+                        <div class="ui icon labeled mini compact menu">
+                            <a href="/CutiSPD" class="item"><i class="calendar times icon"></i>Cuti & SPD</a>
+                            <a class="item"><i class="blue motorcycle icon"></i>KartuKendali</a>
+                            <a href="http://bpsluwugoid.odoo.com" class="item"><i class="envelope icon"></i>Surat</a>
+                        </div>
+                        <div class="ui icon labeled mini compact menu">
+                            <a href="/Matriks" class="item"><i class="tasks icon"></i>Matriks</a>
+                            <a href="/Presensi" class="item"><i class="clipboard outline icon"></i>Presensi</a>
+                            <a href="/Notulen" class="item"><i class="file alternate k icon"></i>Notulen</a>
+                        </div>	
+                        <div class="ui icon labeled mini compact menu">
+                            <a href="/BukuTamu" class="item"><i class="address book outline icon"></i>BukuTamu</a>
+                            <a href="http://webapps.bps.go.id/kipapp" class="item"><i class="kickstarter k icon"></i>KipApp</a>
+                            <a href="http://sipecut.bps.go.id" class="item"><i class="stripe s icon"></i>Sipecut</a>
+                        </div>	
+                    </div>
 				</div>
 			</div>
 			</div>
@@ -132,9 +121,9 @@
 		<div class="ui container">
 			<div class="ui brown segment">
 				<h1 class="ui center aligned icon header">
-				  <i class="blue motorcycle icon icon"></i>
-				  <b>KartuKendali</b>
-				</h1>
+                    <i class="blue motorcycle icon"></i>
+                    <b>KartuKendali</b>
+                </h1>
 				<div class="ui divider"></div>
 				<div class="ui top attached tabular menu">
 					<a class="item" id="daftar_menu">
@@ -146,7 +135,6 @@
 				  </div>
 				  <div class="ui bottom attached segment">
 					<div id="daftar_segment">
-					<div id="daftar_segment">
                         <div class="ui container">
 							<div class="ui form">
 								<div class="field">
@@ -156,6 +144,16 @@
 											<div class="column">
 												<select name="pegawai" id="pegawai_daftar_select" class="ui dropdown selection">
 													<option default value="-1">Semua</option>
+													<%
+														PegawaiModel.Collection daftar_pegawai = (PegawaiModel.Collection) (request.getAttribute("daftar_pegawai"));
+														for(int i = 0;i < daftar_pegawai.getCollection().size();i++){
+															int pegawai_item_id = daftar_pegawai.getCollection().get(i).getId();
+															String pegawai_item_nama = daftar_pegawai.getCollection().get(i).getNama();
+															String html_id = "'"+pegawai_item_id+"'";
+															String html_out = "<option value="+html_id+">"+pegawai_item_nama+"</option>"; 
+															out.println(html_out);
+														}
+													%>
 												</select>
 											</div>
 										</div>
@@ -164,7 +162,7 @@
 							</div>
                             <br>
                             <div>
-                                Ini Adalah Kolom Data
+								<div id="example-table"></div>
                             </div>
                         </div>
 						<br>
@@ -180,62 +178,293 @@
 						</div>
 					</div>
 					<div id="input_segment">
-						<form class="ui form">
-							<div class="field">
-								<label><b>Jenis Rapat</b></label>
-								<select id="jenis_rapat_select" class="ui dropdown selection">
-									<option value="" hidden="true" selected="selected"></option>
-									<option value="0">Rapat Bulanan</option>
-									<option value="1">Rapat Lainnya</option>
-								</select>
-							</div>	
-							<div class="field">
-								<label><b>Keterangan</b></label>
-								<input type="text" id="ket_rapat" placeholder="cth: Rapat Bulan Januari 2023/Rapat Regsosek">
-							</div>
-							<div class="field">
-								<label><b>Tanggal</b></label>
-								<input type="date" id="tanggal_rapat">
-							</div>
-							<div class="field">								
-								<label><b>Peserta</b></label>
-								<div class="ui left icon input">
-									<input type="text" id="peserta_rapat" placeholder="cth: semua pegawai/ketua tim.">
-									<i class="users icon"></i>
+						<div class="ui form">                       
+                            <center><h3><b>IDENTITAS</b></h3></center>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Nama</b></label>
+								</div>
+								<div class="field">
+									<select name="pegawai_id" id="pegawai_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<%
+											PegawaiModel.Collection pegawai = (PegawaiModel.Collection) (request.getAttribute("pegawai"));
+											int pegawai_size = pegawai.getCollection().size();
+											for(int x = 0;x < pegawai_size;x++){
+												int pegawai_item_id = pegawai.getCollection().get(x).getId();
+												String pegawai_item_nama = pegawai.getCollection().get(x).getNama();
+												String html_id = "'"+pegawai_item_id+"'";
+												String html_out = "";
+												if(pegawai_size == 1){
+													html_out = "<option selected value="+html_id+">"+pegawai_item_nama+"</option>"; 
+												} else{
+													html_out = "<option value="+html_id+">"+pegawai_item_nama+"</option>"; 
+												}
+												out.println(html_out);
+											}
+										%>
+									</select>
 								</div>
 							</div>
-							<div class="field">
-								<label><b>Notulis</b></label>
-								<select id="notulis_select" class="ui dropdown selection">
-									<option value="" hidden="true" selected="selected"></option>
-                                    <%
-                                        PegawaiModel.Collection daftar_pegawai = (PegawaiModel.Collection) request.getAttribute("daftar_pegawai");
-                                        if(daftar_pegawai != null){
-                                            for(int i = 0;i < daftar_pegawai.getCollection().size();i++){
-                                                try{
-                                                    int id = daftar_pegawai.getCollection().get(i).getId();
-                                                    String nama = daftar_pegawai.getCollection().get(i).getNama();
-                                                    out.println("<option value='"+id+"'>"+nama+"</option>");
-                                                } catch(Exception ee){
-                                                    System.out.println(ee.getMessage());
-                                                }
-                                            }
-                                        } else{
-                                        }
-                                    %>
-                                    <!-- <option value="0">Muh. Taufiq Mukhtar</option> -->
-								</select>
-							</div>
-							<div class="field">
-								<label><b>Notula</b></label>
-								<div id="id_editor">
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Kendaraan Dinas</b></label>
 								</div>
-							</div>	
-						</form>
+								<div class="field">
+									<select name="kd_id" id="kd_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<%
+											KendaraanDinasModel.Collection kd = (KendaraanDinasModel.Collection) (request.getAttribute("daftar_kd"));
+											int kd_size = kd.getCollection().size();
+											for(int y = 0;y < kd_size;y++){
+												int kd_item_id = kd.getCollection().get(y).getId();
+												String kd_item_no_polisi = kd.getCollection().get(y).getNo_polisi();
+												String kd_item_ket = kd.getCollection().get(y).getKet();
+												String html_id = "'"+kd_item_id+"'";
+												String html_out = "";
+												if(kd_size == 1){
+													html_out = "<option selected value="+html_id+">"+kd_item_no_polisi+" - "+kd_item_ket+"</option>"; 
+												} else{
+													html_out = "<option value="+html_id+">"+kd_item_no_polisi+" - "+kd_item_ket+"</option>"; 
+												}
+												out.println(html_out);
+											}
+										%>
+										<!--
+										<option value="0">DD 1234 XY - Freego 125CC</option>
+										-->
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Tanggal</b></label>
+								</div>
+								<div class="field">
+									<input name="tanggal_id" type="date" id="tanggal_input">
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Pemeriksa</b></label>
+								</div>
+								<div class="field">
+									<select name="pemeriksa_id" id="pemeriksa_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Ary Shanty S.E</option>
+									</select>	
+								</div>
+							</div>
+                            <div class="ui divider"></div>
+                            <center><h3><b>PENILAIAN</b></h3></center>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>SIM</b></label> 
+								</div>
+								<div class="field">
+									<select name="sim_cat" id="sim_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>STNK</b></label> 
+								</div>
+								<div class="field">
+									<select name="stnk_cat" id="stnk_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Plat No Depan</b></label> 
+								</div>
+								<div class="field">
+									<select name="plat_no_depan_cat" id="plat_no_depan_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Plat No Belakang</b></label> 
+								</div>
+								<div class="field">
+									<select name="plat_no_belakang_cat" id="plat_no_belakang_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Lampu Jauh</b></label> 
+								</div>
+								<div class="field">
+									<select name="lampu_jauh_cat" id="lampu_jauh_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Lampu Dekat</b></label> 
+								</div>
+								<div class="field">
+									<select name="lampu_dekat_cat" id="lampu_dekat_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Lampu Sen Kanan</b></label> 
+								</div>
+								<div class="field">
+									<select name="lampu_sen_kanan_cat" id="lampu_belok_kanan_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Lampu Sen Kiri</b></label> 
+								</div>
+								<div class="field">
+									<select name="lampu_sen_kiri_cat" id="lampu_belok_kiri_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Klakson</b></label> 
+								</div>
+								<div class="field">
+									<select name="klakson_cat" id="klakson_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Rem</b></label> 
+								</div>
+								<div class="field">
+									<select name="rem_cat" id="rem_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Kaca Spion Kanan</b></label> 
+								</div>
+								<div class="field">
+									<select name="kaca_spion_kanan_cat" id="kaca_spion_kanan_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Kaca Spion Kiri</b></label> 
+								</div>
+								<div class="field">
+									<select name="kaca_spion_kiri_cat" id="kaca_spion_kiri_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Oli Mesin</b></label> 
+								</div>
+								<div class="field">
+									<select name="oli_mesin_cat" id="oli_mesin_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Tekanan Ban Depan</b></label> 
+								</div>
+								<div class="field">
+									<select name="tekanan_ban_depan_cat" id="tekanan_ban_depan_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Tekanan Ban Belakang</b></label> 
+								</div>
+								<div class="field">
+									<select name="tekanan_ban_belakang_cat" id="tekanan_ban_belakang_input_select" class="ui dropdown selection input_select">
+										<option value="" hidden="true" selected="selected"></option>
+										<option value="0">Good/Bagus</option>
+										<option value="1">Bad/Buruk</option>
+										<option value="2">Not Available/Tidak Dijumpai</option>
+									</select>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="three wide field">
+									<label><b>Lainnya</b></label> 
+								</div>
+								<div class="eight wide field">					
+									<textarea name="lainnya_input" cols="500" id="lainnya_input_textarea" class="ui dropdown selection"></textarea>
+								</div>
+							</div>
+						</div>
 						<br>
-						<div class="ui container right aligned">
+						<div class="ui container center aligned">
 							<div class="row">
-								<div class="right column">
+								<div class="column">
 									<a class="ui blue small left labeled icon button" id="save_button_id">
 									  <i class="save icon"></i>
 									  Save
@@ -248,48 +477,258 @@
 				</div>
 			</div>
 		</div>
-		<!-- html for rapat_popup -->
+		<!-- html for view_popup -->
 		<div class="ui container">
-			<div class="ui large modal" id="rapat_popup">
-				<div class="header">Notulen Rapat</div>
+			<div class="ui large modal" id="view_popup">
+				<div class="header">Kartu Kendali</div>
 				<div class="scrolling content">
-					<form class="ui form">
-						<div class="field">
-							<label><b>Jenis Rapat</b></label>
-							<input type="text" id="jenis_rapat_popup" disabled>
-						</div>	
-						<div class="field">
-							<label><b>Keterangan</b></label>
-							<input type="text" id="ket_rapat_popup" disabled>
-						</div>
-						<div class="field">
-							<label><b>Tanggal</b></label>
-							<input type="date" id="tanggal_rapat_popup" disabled>
-						</div>
-						<div class="field">								
-							<label><b>Peserta</b></label>
-							<div class="ui left icon input">
-								<input type="text" id="peserta_rapat_popup" placeholder="cth: semua pegawai/ketua tim." disabled>
-								<i class="users icon"></i>
+					<div class="ui form">                
+						<center><h3><b>IDENTITAS</b></h3></center>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Nama</b></label>
+							</div>
+							<div class="field">				
+								<input type="text" id="pegawai_view_input" disabled>
 							</div>
 						</div>
-						<div class="field">
-							<label><b>Notulis</b></label>
-							<input type="text" id="notulis_rapat_popup" disabled>
-						</div>
-						<div class="field">
-							<label><b>Notula</b></label>
-							<div id="id_editor_popup">
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Kendaraan Dinas</b></label>
 							</div>
-						</div>	
-					</form>			
+							<div class="field">
+								<input type="text" id="kd_view_input" disabled>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Tanggal</b></label>
+							</div>
+							<div class="field">
+								<input type="date" id="tanggal_view_input" disabled>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Pemeriksa</b></label>
+							</div>
+							<div class="field">
+								<input type="text" id="pemeriksa_view_input" disabled>
+							</div>
+						</div>
+						<div class="ui divider"></div>
+						<center><h3><b>PENILAIAN</b></h3></center>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>SIM</b></label> 
+							</div>
+							<div class="field">
+								<select id="sim_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>STNK</b></label> 
+							</div>
+							<div class="field">
+								<select id="stnk_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Plat No Depan</b></label> 
+							</div>
+							<div class="field">
+								<select id="plat_no_depan_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Plat No Belakang</b></label> 
+							</div>
+							<div class="field">
+								<select id="plat_no_belakang_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Lampu Jauh</b></label> 
+							</div>
+							<div class="field">
+								<select id="lampu_jauh_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Lampu Dekat</b></label> 
+							</div>
+							<div class="field">
+								<select id="lampu_dekat_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Lampu Sen Kanan</b></label> 
+							</div>
+							<div class="field">
+								<select id="lampu_belok_kanan_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Lampu Sen Kiri</b></label> 
+							</div>
+							<div class="field">
+								<select id="lampu_belok_kiri_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Klakson</b></label> 
+							</div>
+							<div class="field">
+								<select id="klakson_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Rem</b></label> 
+							</div>
+							<div class="field">
+								<select id="rem_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Kaca Spion Kanan</b></label> 
+							</div>
+							<div class="field">
+								<select id="kaca_spion_kanan_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Kaca Spion Kiri</b></label> 
+							</div>
+							<div class="field">
+								<select id="kaca_spion_kiri_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Oli Mesin</b></label> 
+							</div>
+							<div class="field">
+								<select id="oli_mesin_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Tekanan Ban Depan</b></label> 
+							</div>
+							<div class="field">
+								<select id="tekanan_ban_depan_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Tekanan Ban Belakang</b></label> 
+							</div>
+							<div class="field">
+								<select id="tekanan_ban_belakang_view_select" class="ui dropdown selection input_select" disabled>
+									<option value="" hidden="true" selected="selected"></option>
+									<option value="0">Good/Bagus</option>
+									<option value="1">Bad/Buruk</option>
+									<option value="2">Not Available/Tidak Dijumpai</option>
+								</select>
+							</div>
+						</div>
+						<div class="inline fields">
+							<div class="three wide field">
+								<label><b>Lainnya</b></label> 
+							</div>
+							<div class="eight wide field">					
+								<textarea cols="500" id="lainnya_view_textarea" disabled></textarea>
+							</div>
+						</div>
+					</div>			
 				</div>
 				<div class="actions">
-					<a class="ui red labeled icon button" id="rapat_close_popup"><i class="close icon"></i>Close</a>
+					<a class="ui red labeled icon button" id="view_close_popup"><i class="close icon"></i>Close</a>
 				</div>
 			</div>
 		</div>
-		<!-- html for rapat_popup -->
+		<!-- html for view_popup -->
 		<!-- html for login -->
 		<div class="ui container">
 			<div class="ui tiny modal" id="login_popup">
@@ -331,8 +770,8 @@
 			$("#sidebar_menu").sidebar("toggle");
 		});
 		//=========================================================//
-		$("#jenis_rapat_select").dropdown();
-		$("#notulis_select").dropdown();
+		$("#pegawai_daftar_select").dropdown();
+        $(".input_select").dropdown();
 		//submenu
 		$("#daftar_menu").addClass("active");
 		$("#input_segment").hide();
@@ -350,41 +789,69 @@
 		});
 	</script>
 	<script type="text/javascript">
+    	var columnData = [];
+		var tableData = [];
+		<%@ include file="jsp_include/ViewEditDeleteColumn/view_edit_delete.js" %>
+		viewIconCall = function(row){
+			loadViewItem(row.getData());
+		};
+		let kdFormatter = function(cell, formatterParams,onRendered){
+			let returnValue = cell.getRow().getData().kendaraan_dinas.no_polisi+" - "+cell.getRow().getData().kendaraan_dinas.ket;
+    		return returnValue;
+		}
+
+		columnData.push({formatter:showIcon,width:60,frozen:true,hozAlign:"center",resizable:false,cellClick:function(e,cell){
+    viewIconCall(cell.getRow());
+}});
+    	columnData.push({title:"Nama Pegawai",field:"pj_pegawai.nama",width:200,frozen:true});
+		columnData.push({title:"Kendaraan Dinas",formatter:kdFormatter,hozAlign:"center"});
+		columnData.push({title:"Tanggal",field:"tanggal"});
+		columnData.push({title:"Bulan",field:"bulan"});
+		columnData.push({title:"Tahun",field:"tahun"});
+        var table = new Tabulator("#example-table", {
+             // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+            data:tableData, //assign data to table
+            layout:"fitColumns", //fit columns to width of table (optional)
+            columns:columnData,
+			pagination:true, //enable.
+    		paginationSize:10, // this option can take any positive integer value
+        });
+	</script>
+	<script type="text/javascript">
 		//----------------- insert segment -------------------
 		//Button
 		//save data
 		function saveInput(){
-			let data_send = null;
-			let id_jenis_rapat = $("#jenis_rapat_select").val();
-			let ket_rapat = $("#ket_rapat").val();
-			let tanggal_rapat = $("#tanggal_rapat").val();
+			//get identitas values;
+			let pj_pegawai_id= $("#pegawai_input_select").val();
+			let kendaraan_dinas_id= $("#kd_input_select").val();
+			let tanggal_input = $("#tanggal_input").val();
+			let pemeriksa_id = $("#pemeriksa_input_select").val();
+			//=================================================//
+			//get penilaian_values;
+			let sim = $("#sim_input_select").val();
+			let stnk = $("#stnk_input_select").val();
+			let plat_no_depan = $("#plat_no_depan_input_select").val();
+			let plat_no_belakang = $("#plat_no_belakang_input_select").val();
+			let lampu_jauh = $("#lampu_jauh_input_select").val();
+			let lampu_dekat = $("#lampu_dekat_input_select").val();
+			let lampu_belok_kanan = $("#lampu_belok_kanan_input_select").val();
+			let lampu_belok_kiri = $("#lampu_belok_kiri_input_select").val();
+			let klakson = $("#klakson_input_select").val();
+			let rem = $("#rem_input_select").val();
+			let kaca_spion_kanan = $("#kaca_spion_kanan_input_select").val();
+			let kaca_spion_kiri = $("#kaca_spion_kiri_input_select").val();
+			let oli_mesin = $("#oli_mesin_input_select").val();
+			let tekanan_ban_depan = $("#tekanan_ban_depan_input_select").val();
+			let tekanan_ban_belakang = $("#tekanan_ban_belakang_input_select").val();
+			let lainnya = $("#lainnya_input_textarea").val();
+			let is_date_number = false;
 			let tanggal = -1;
 			let bulan = -1;
 			let tahun = -1;
-			let peserta_rapat = $("#peserta_rapat").val();
-			let id_notulis = $("#notulis_select").val();
-			let notulen = $("#id_editor").summernote("code");
-			//validation
-			let is_jenis_number = false;
-			let is_notulis_number = false;
-			let is_date_number = false;
 			try{
-				if(!isNaN(parseInt(id_jenis_rapat))){
-					is_jenis_number = true;
-					console.log("id_jenis adalah numeric.");
-				} else{
-					alert("Anda belum memilih Jenis Rapat.");
-					return;
-				}
-				if(!isNaN(parseInt(id_notulis))){
-					is_notulis_number = true;
-					console.log("id notulis adalah numeric.");
-				} else{
-					alert("Anda belum memilih Notulis.");
-					return;
-				}
 				try{
-					let date_parsed = tanggal_rapat.split("-");
+					let date_parsed = tanggal_input.split("-");
 					tanggal = date_parsed[2];
 					bulan	= date_parsed[1];
 					tahun = date_parsed[0];
@@ -409,22 +876,24 @@
 					} else{
 						alert("Pastikan anda sudah memilih tanggal, bulan, dan tahun.");
 					}
-
 				}
 			} catch(ee){
 				alert("Terjadi Kesalahan di sisi Browser.");
 				return;
 			} finally{
-				if(is_jenis_number && is_notulis_number && is_date_number){
+				if(is_date_number){
+
 				} else{			
 					$("#save_button_id").removeClass("disabled");			
 					$($("#save_button_id").find("i")[0]).removeClass("loading spinner");
 					$($("#save_button_id").find("i")[0]).addClass("save");
+					return;
 				}
 			}
-			data_send = {"ket":ket_rapat,"tanggal":tanggal,"bulan":bulan,"tahun":tahun,"peserta":peserta_rapat,"jenis_rapat_id":id_jenis_rapat,"notulis_id":id_notulis,"notulen":notulen};
-			$.ajax({url:"/api/notulen/insert",method:"post",data:JSON.stringify(data_send),contentType:"application/json",success:function(){
+			data_send = {"pj_pegawai_id":pj_pegawai_id,"kendaraan_dinas_id":kendaraan_dinas_id,"tanggal":tanggal,"bulan":bulan,"tahun":tahun,"pemeriksa_id":pemeriksa_id,"sim":sim,"stnk":stnk,"plat_no_depan":plat_no_depan,"plat_no_belakang":plat_no_belakang,"plat_no_depan":plat_no_depan,"plat_no_belakang":plat_no_belakang,"lampu_jauh":lampu_jauh,"lampu_dekat":lampu_dekat,"lampu_belok_kanan":lampu_belok_kanan,"lampu_belok_kiri":lampu_belok_kiri,"klakson":klakson,"rem":rem,"kaca_spion_kanan":kaca_spion_kanan,"kaca_spion_kiri":kaca_spion_kiri,"oli_mesin":oli_mesin,"tekanan_ban_depan":tekanan_ban_depan,"tekanan_ban_belakang":tekanan_ban_belakang,"lainnya":lainnya};
+			$.ajax({url:"/api/kartu_kendali/insert",method:"post",data:JSON.stringify(data_send),contentType:"application/json",success:function(){
 				alert("success");
+				$("#daftar_menu").click();
 				$("#refresh_button_id").click();
 			},error:function(){
 				alert("Terjadi Kesalahan. Pastikan Internet Anda Stabil.");
@@ -454,35 +923,26 @@
 		//================= BUTTON =========================
 		let rapat_data = null;
 
-		//load_data
-		function loadData(data){		
-			let daftar_rapat_container = $("#daftar_rapat_container");		
-			daftar_rapat_container.slideUp();
-			let wrapper = "";
-			try{
-				rapat_data = JSON.parse(data);
-				daftar_rapat_container.html("");
-				for(let i = 0; rapat_data.length;i++){
-					let rapat_item = rapat_data[i];
-					let string_div = "<div class='column'>";
-					string_div = string_div+"<div class='ui segment'>";
-					string_div = string_div+"<a class='ui red ribbon label'>";
-					string_div = string_div+rapat_item.jenis_rapat.ket;					
-					string_div = string_div+"</a>";					
-					string_div = string_div+"<p><a href='javascript:void(null);' class='rapat_item' id='rapat_"+rapat_item.id+"'>";
-					string_div = string_div+"<b>"+rapat_item.ket;	
-					string_div = string_div+"</b></a></p></div></div>";						
-					wrapper = wrapper + string_div;
-				}
-			} catch(ee){
-			}
-			daftar_rapat_container.html(wrapper);
-			daftar_rapat_container.slideDown();
-			addClickListener();
-		}
+		//load_data		
+        function loadData(table_data){
+			table.replaceData(table_data)
+			.then(function(){
+			    //run code after table has been successfully updated
+			})
+			.catch(function(error){
+			    //handle error loading data
+			});
+        }
 		//refresh_data
 		function refreshData(){
-			$.get("/api/notulen/all",function(data,status){
+			let pegawai_id_list = $("#pegawai_daftar_select").val();	
+			let link_refresh_data = "";
+			if(pegawai_id_list == "-1"){
+				link_refresh_data = "/api/kartu_kendali/all";
+			} else{
+				link_refresh_data = "/api/kartu_kendali/pegawai/id/"+pegawai_id_list;
+			}
+			$.get(link_refresh_data,function(data,status){
 				loadData(data);
 			}).done(function(){
 				$("#refresh_button_id").removeClass("disabled");			
@@ -510,15 +970,9 @@
 				}
 			},500);
 		});
-		//rapat_item_popup
-		$("#id_editor_popup").summernote({
-			minHeight:150,
-			maxHeight:300,
-			toolbar: [
-        ]
-		});
-		$("#rapat_close_popup").click(function(){
-			$("#rapat_popup").modal({"closable":false}).modal("hide");
+		$("#refresh_button_id").click();
+		$("#view_close_popup").click(function(){
+			$("#view_popup").modal({"closable":false}).modal("hide");
 		});
 		//click_data
 		function addClickListener(){
@@ -534,15 +988,14 @@
 			getRapatItem(rapat_id);
 		});
 		}
-		//loadRapatData
-		function loadRapatItem(rapat_data){
-			let rapat_item_json = JSON.parse(rapat_data);
+		//loadKarKenData
+		function loadViewItem(view_data){
 			try{
-				$("#jenis_rapat_popup").val(rapat_item_json.jenis_rapat.ket);
-				$("#ket_rapat_popup").val(rapat_item_json.ket);
-				let tanggal = rapat_item_json.tanggal+"";
-				let bulan = rapat_item_json.bulan+"";
-				let tahun = rapat_item_json.tahun+"";
+				$("#pegawai_view_input").val(view_data.pj_pegawai.nama);
+				$("#kd_view_input").val(view_data.kendaraan_dinas.no_polisi+" - "+view_data.kendaraan_dinas.ket);
+				let tanggal = view_data.tanggal+"";
+				let bulan = view_data.bulan+"";
+				let tahun = view_data.tahun+"";
 				if(tanggal.length == 1){
 					tanggal = "0"+tanggal;
 				} else{}
@@ -550,15 +1003,28 @@
 					bulan = "0"+bulan;
 				} else{}
 				console.log(tahun+"-"+bulan+"-"+tanggal);
-				$("#tanggal_rapat_popup").val(tahun+"-"+bulan+"-"+tanggal);
-				$("#peserta_rapat_popup").val(rapat_item_json.peserta);
-				$("#notulis_rapat_popup").val(rapat_item_json.nama_notulis);	
-				$("#id_editor_popup").summernote("code",rapat_item_json.notulen);
-				$('#id_editor_popup').summernote('disable');
-			} catch(ee){
-
+				$("#tanggal_view_input").val(tahun+"-"+bulan+"-"+tanggal);
+				$("#pemeriksa_view_input").val(view_data.pemeriksa.nama);
+				$("#sim_view_select").val(""+view_data.sim).change();
+				$("#stnk_view_select").val(""+view_data.stnk).change();
+				$("#plat_no_depan_view_select").val(view_data.plat_no_depan).change();
+				$("#plat_no_belakang_view_select").val(view_data.plat_no_belakang).change();
+				$("#lampu_jauh_view_select").val(view_data.lampu_jauh).change();
+				$("#lampu_dekat_view_select").val(view_data.lampu_dekat).change();
+				$("#lampu_belok_kanan_view_select").val(view_data.lampu_belok_kanan).change();
+				$("#lampu_belok_kiri_view_select").val(view_data.lampu_belok_kiri).change();
+				$("#klakson_view_select").val(view_data.klakson).change();
+				$("#rem_view_select").val(view_data.rem).change();
+				$("#kaca_spion_kanan_view_select").val(view_data.kaca_spion_kanan).change();
+				$("#kaca_spion_kiri_view_select").val(view_data.kaca_spion_kiri).change();
+				$("#oli_mesin_view_select").val(view_data.oli_mesin).change();
+				$("#tekanan_ban_depan_view_select").val(view_data.tekanan_ban_depan).change();
+				$("#tekanan_ban_belakang_view_select").val(view_data.tekanan_ban_belakang).change();
+				$("#lainnya_view_textarea").val(view_data.lainnya);
+				$("#view_popup").modal("show");
+			} catch(err){
+				console.log(err.message);
 			}
-
 		}
 		//get_rapat_item
 		function getRapatItem(rapat_id){
@@ -575,18 +1041,6 @@
 				alert("Terjadi Kesalahan. Pastikan Internet Anda Stabil.");
 			});
 		}
-		$("#refresh_button_id").click();
-	</script>
-	<script type="text/javascript">
-		$("#id_editor").summernote({
-			minHeight:150,
-			maxHeight:300,
-			toolbar: [
-			['font', ['bold', 'underline', 'clear']],
-			['para', ['ul', 'ol', 'paragraph']],
-			['view', ['codeview', 'help']]
-        ]
-		});
 	</script>
     <script>
     	//login script

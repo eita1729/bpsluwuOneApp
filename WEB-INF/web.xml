@@ -63,6 +63,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>KartuKendali</servlet-name>
+		<servlet-class>com.bpsluwuOneApp.servlet.KartuKendali</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>KartuKendali</servlet-name>
+		<url-pattern>/KartuKendali</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>MasterWilayah</servlet-name>
 		<servlet-class>com.bpsluwuOneApp.servlet.MasterWilayah</servlet-class>
 	</servlet>
@@ -93,6 +102,7 @@
 		<url-pattern>/Matriks</url-pattern>
 		<url-pattern>/Notulen</url-pattern>
 		<url-pattern>/BukuTamu</url-pattern>
+		<url-pattern>/KartuKendali</url-pattern>
 		<url-pattern>/MasterWilayah</url-pattern>
 	</filter-mapping>
 </web-app>
