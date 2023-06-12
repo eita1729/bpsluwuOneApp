@@ -251,7 +251,7 @@
 								<div class="field">
 									<select name="pemeriksa_id" id="pemeriksa_input_select" class="ui dropdown selection input_select">
 										<option value="" hidden="true" selected="selected"></option>
-										<option value="0">Ary Shanty S.E</option>
+										<option value="10">Ary Shanty S.E</option>
 									</select>	
 								</div>
 							</div>
@@ -758,6 +758,7 @@
 			</div>
 		</div>
 		<!-- html for login -->
+		<%@ include file="jsp_include/ViewEditDeleteColumn/delete_popup.html" %>
 	</body>
 	<script type="text/javascript">
 		/** 
@@ -795,15 +796,29 @@
 		viewIconCall = function(row){
 			loadViewItem(row.getData());
 		};
+		deleteIconCall = function(row){
+		}
 		let kdFormatter = function(cell, formatterParams,onRendered){
 			let returnValue = cell.getRow().getData().kendaraan_dinas.no_polisi+" - "+cell.getRow().getData().kendaraan_dinas.ket;
     		return returnValue;
 		}
-
-		columnData.push({formatter:showIcon,width:60,frozen:true,hozAlign:"center",resizable:false,cellClick:function(e,cell){
-    viewIconCall(cell.getRow());
+		columnData.push({formatter:showIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
+			viewIconCall(cell.getRow());
 }});
-    	columnData.push({title:"Nama Pegawai",field:"pj_pegawai.nama",width:200,frozen:true});
+		columnData.push({formatter:deleteIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
+			$("#cancel_delete_button").click(function(){
+				$("#delete_popup").modal("hide");
+				return false;
+			});
+			$("#process_delete_button").click({row:(cell.getRow())},function(event){
+				deleteIconCall(event.data.row);
+				return false;
+			});
+			$("#message_process_delete").html("");
+			$("#warning_process_delete").addClass("hidden");		
+			$("#delete_popup").modal({"closable":false}).modal("show");
+}});
+    	columnData.push({title:"Nama Pegawai",field:"pj_pegawai.nama",width:200});
 		columnData.push({title:"Kendaraan Dinas",formatter:kdFormatter,hozAlign:"center"});
 		columnData.push({title:"Tanggal",field:"tanggal"});
 		columnData.push({title:"Bulan",field:"bulan"});
@@ -974,20 +989,7 @@
 		$("#view_close_popup").click(function(){
 			$("#view_popup").modal({"closable":false}).modal("hide");
 		});
-		//click_data
-		function addClickListener(){
-			$(".rapat_item").click(function(){
-			console.log("rapat_item clicked");
-			let class_id = $(this).attr("id");
-			let rapat_id = (class_id.split("_"))[1];
-			console.log("rapat_id : "+rapat_id);
-			$("#rapat_close_popup").addClass("disabled");			
-			$($("#rapat_close_popup").find("i")[0]).removeClass("close");
-			$($("#rapat_close_popup").find("i")[0]).addClass("loading spinner");
-			$("#rapat_popup").modal({"closable":false}).modal("show");	
-			getRapatItem(rapat_id);
-		});
-		}
+
 		//loadKarKenData
 		function loadViewItem(view_data){
 			try{
@@ -1026,20 +1028,39 @@
 				console.log(err.message);
 			}
 		}
-		//get_rapat_item
-		function getRapatItem(rapat_id){
-			$.get("/api/notulen/id/"+rapat_id,function(data,status){
-				loadRapatItem(data);
+		//deleteIconCall Setting
+		deleteIconCall = function(row){		
+			console.log("called");
+			$("#process_delete_button").addClass("disabled");			
+			$($("#process_delete_button").find("i")[0]).removeClass("trash alternate");
+			$($("#process_delete_button").find("i")[0]).addClass("loading spinner");
+			try{
+				processDeleteItem(row.getData());
+			} catch(ee){
+				console.log(ee.message);
+			}			
+		};
+		function processDeleteItem(delete_data){
+			$.get(("/api/kartu_kendali/delete/id/"+delete_data.id),function(data,status){
+				let dataObj = JSON.parse(data);
+				console.log(dataObj.code+" : "+dataObj.message);
+				if(dataObj.code >= 400){
+					$("#message_warning_process_delete").html(dataObj.message);
+					$("#warning_process_delete").removeClass("hidden");			
+					$("#warning_process_delete").addClass("visible");
+				} else {
+					$("#delete_popup").modal("hide");
+					$("#refresh_button_id").click();
+				}
 			}).done(function(){
-				$("#rapat_close_popup").removeClass("disabled");			
-				$($("#rapat_close_popup").find("i")[0]).removeClass("loading spinner");
-				$($("#rapat_close_popup").find("i")[0]).addClass("close");
-			}).fail(function(){
-				$("#rapat_close_popup").removeClass("disabled");			
-				$($("#rapat_close_popup").find("i")[0]).removeClass("loading spinner");
-				$($("#rapat_close_popup").find("i")[0]).addClass("close");				
+			}).fail(function(){	
 				alert("Terjadi Kesalahan. Pastikan Internet Anda Stabil.");
 			});
+			setTimeout(function(){			
+				$("#process_delete_button").removeClass("disabled");			
+				$($("#process_delete_button").find("i")[0]).removeClass("loading spinner");
+				$($("#process_delete_button").find("i")[0]).addClass("trash alternate");
+			},500);
 		}
 	</script>
     <script>
