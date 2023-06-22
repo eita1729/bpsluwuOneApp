@@ -108,7 +108,7 @@
 						<h2>Administrasi Kepegawaian</h2>
 						<div class="ui icon labeled mini compact menu">
 							<a class="item"><i class="blue calendar times icon"></i>Cuti & SPD</a>
-							<a class="item"><i class="motorcycle icon"></i>KartuKendali</a>
+							<a class="item" href="/KartuKendali"><i class="motorcycle icon"></i>KartuKendali</a>
 							<a class="item" href="https://bpsluwugoid.odoo.com"><i class="envelope icon"></i>Surat</a>
 						</div>
 						<div class="ui icon labeled mini compact menu">

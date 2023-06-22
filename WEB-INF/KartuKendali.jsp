@@ -802,10 +802,10 @@
 			let returnValue = cell.getRow().getData().kendaraan_dinas.no_polisi+" - "+cell.getRow().getData().kendaraan_dinas.ket;
     		return returnValue;
 		}
-		columnData.push({formatter:showIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
+		columnData.push({formatter:showIcon,width:60,hozAlign:"center",resizable:false,cellClick:function(e,cell){
 			viewIconCall(cell.getRow());
 }});
-		columnData.push({formatter:deleteIcon,width:40,hozAlign:"center",resizable:false,cellClick:function(e,cell){
+		columnData.push({formatter:deleteIcon,width:60,hozAlign:"center",resizable:false,cellClick:function(e,cell){
 			$("#cancel_delete_button").click(function(){
 				$("#delete_popup").modal("hide");
 				return false;

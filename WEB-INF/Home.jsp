@@ -131,46 +131,123 @@
 		<div class="ui divider"></div>
 		<div class="ui container">
 			<div class="ui brown segment">
-			<div class="row">
-				<div class="ui three column centered stackable grid">
-				<%
-					TimKerjaModel.Collection daftar_tim = ((TimKerjaModel.Collection)(request.getAttribute("daftar_tim")));
-					ArrayList<TimKerjaModel> list_tim = daftar_tim.getCollection();
-					int jumlah_tim = list_tim.size();
-					int bagian = (int)(Math.ceil(jumlah_tim/3.0));
-					for(int i = 0;i < bagian;i++){
-						out.println("<div class='row'>");
-						for(int x = 0;x < 3;x++){
-							try{
-								TimKerjaModel tim_kerja = list_tim.get((i*3)+x);
-								String nama_tim = tim_kerja.getNama();
-								String ket_tim = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five";
-								out.println("<div class='column'>");
-								out.println("<div class='ui fluid styled accordion accordion_in_page daftar_tim_kerja'>");
-								out.println("<div class='title'><i class='dropdown icon'></i>"+nama_tim+"</div>");
-								out.print("<div class='content'>");
-								out.print(ket_tim);
-								out.println("</div>");	//content
-								out.println("</div>");	//ui fluid
-								out.println("</div>");	//column
-							} catch(Exception ee){
-
-							}	
-						}
-						out.println("</div>");
-					}
-				%>
-	<!--			<div class="row">
-						<div class="column">
-							<div class="ui fluid styled accordion accordion_in_page daftar_tim_kerja">
-								<div class="title"><i class="dropdown icon"></i>Tim Kerja 1 : Bidang Pengolahan</div>
-								<div class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-							</div>
+				<div class="row">
+					<div class="ui icon message">
+						<i class="thumbtack icon"></i>
+						<div class="content">
+						  <div class="header">
+						  	<%
+								out.println("Pesan Hari Ini Untuk <b style='color:brown'>Kamu</b>");
+							%>
+							<!-- 
+								Pesan Hari Ini Untuk <b style="color:brown">Muh. Taufiq Mukhtar</b>
+							-->
+						  </div>
+						  <%
+						  	KalimatInspirasiModel kalimat_inspirasi = (KalimatInspirasiModel)(request.getAttribute("kalimat_inspirasi"));
+							if(kalimat_inspirasi != null){
+								out.println(kalimat_inspirasi.getKalimat());
+							} else {
+								out.println("Tetap Semangat, Sehat Selalu.");
+							}
+						  %>
+						  <!--
+						  <p>Dunia ini ibarat bayangan. Kalau kau berusaha menangkapnya, ia akan lari. Tapi kalau kau membelakanginya, ia tak punya pilihan selain mengikutimu. - Ibnu Qayyim Al Jauziyyah</p>
+						  -->
+						</div>
+					  </div>
+				</div>
+				<br>
+				<div class="ui divider"></div>
+				<div class="row">
+					<div class="ui column centered stackable grid">
+						<div class="row">
+							<b><h2><i>Statistik</i></h2></b>
+						</div>
+						<div class="row">
+							<div class="ui statistics">
+								<div class="statistic">
+								  <div class="value">
+									<img src="/images/elliot.jpg" class="ui circular inline image">
+										<%
+											HashMap<String,Integer> statistik_pegawai1 = (HashMap<String,Integer>)(request.getAttribute("statistik_pegawai"));
+											out.print(statistik_pegawai1.get("laki_laki"));
+										%>
+								  </div>
+								  <div class="label">
+									Laki-Laki
+								  </div>
+								</div>
+								<div class="statistic">
+								  <div class="value">
+									<img src="/images/stevie.jpg" class="ui circular inline image">
+										<%
+											HashMap<String,Integer> statistik_pegawai2 = (HashMap<String,Integer>)(request.getAttribute("statistik_pegawai"));
+											out.print(statistik_pegawai2.get("perempuan"));
+										%>
+								  </div>
+								  <div class="label">
+									Perempuan
+								  </div>
+								</div>
+								<div class="statistic">
+								  <div class="value">
+									<i class="users icon"></i>
+										<%
+											HashMap<String,Integer> statistik_pegawai3 = (HashMap<String,Integer>)(request.getAttribute("statistik_pegawai"));
+											out.print(statistik_pegawai3.get("total_pegawai"));
+										%>
+								  </div>
+								  <div class="label">
+									Total Pegawai
+								  </div>
+								</div>
+							  </div>
 						</div>
 					</div>
-	-->
 				</div>
-			</div>
+				<br>
+				<div class="ui divider"></div>
+				<div class="row">
+					<div class="ui three column centered stackable grid">
+					<%
+						TimKerjaModel.Collection daftar_tim = ((TimKerjaModel.Collection)(request.getAttribute("daftar_tim")));
+						ArrayList<TimKerjaModel> list_tim = daftar_tim.getCollection();
+						int jumlah_tim = list_tim.size();
+						int bagian = (int)(Math.ceil(jumlah_tim/3.0));
+						for(int i = 0;i < bagian;i++){
+							out.println("<div class='row'>");
+							for(int x = 0;x < 3;x++){
+								try{
+									TimKerjaModel tim_kerja = list_tim.get((i*3)+x);
+									String nama_tim = tim_kerja.getNama();
+									String ket_tim = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five";
+									out.println("<div class='column'>");
+									out.println("<div class='ui fluid styled accordion accordion_in_page daftar_tim_kerja'>");
+									out.println("<div class='title'><i class='dropdown icon'></i>"+nama_tim+"</div>");
+									out.print("<div class='content'>");
+									out.print(ket_tim);
+									out.println("</div>");	//content
+									out.println("</div>");	//ui fluid
+									out.println("</div>");	//column
+								} catch(Exception ee){
+
+								}	
+							}
+							out.println("</div>");
+						}
+					%>
+		<!--			<div class="row">
+							<div class="column">
+								<div class="ui fluid styled accordion accordion_in_page daftar_tim_kerja">
+									<div class="title"><i class="dropdown icon"></i>Tim Kerja 1 : Bidang Pengolahan</div>
+									<div class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+								</div>
+							</div>
+						</div>
+		-->
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- html for login -->
