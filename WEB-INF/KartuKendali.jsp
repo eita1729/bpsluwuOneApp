@@ -759,6 +759,7 @@
 		</div>
 		<!-- html for login -->
 		<%@ include file="jsp_include/ViewEditDeleteColumn/delete_popup.html" %>
+		<%@ include file="jsp_include/Footer/footer.jsp" %>
 	</body>
 	<script type="text/javascript">
 		/** 

@@ -218,6 +218,7 @@
 			</div>
 		</div>
 		<!-- html for login -->
+		<%@ include file="jsp_include/Footer/footer.jsp" %>
 	</body>
 	<script type="text/javascript">
 		/** 
